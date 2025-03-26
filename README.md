@@ -8,4 +8,4 @@ Repositorio inicial para las clases de práctica de Algoritmos y Estructuras de 
     - Fallet, Agustina
 
 ## Cuatrimestre de cursado:
-    1er/2do cuatrimestre del 20xx
+    1er cuatrimestre del 2025
