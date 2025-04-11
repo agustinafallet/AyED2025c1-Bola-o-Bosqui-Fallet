@@ -5,7 +5,7 @@ from ordenamiento_quicksort import ordenamiento_quicksort
 from ordenamiento_residuos import ordenamiento_de_residuo
 
 def graficar_tiempos(lista_metodos_ord):
-    tamanos = [1, 10, 100, 200, 500, 700, 1000]
+    tamanos = [1, 10, 100, 300, 500, 700, 1000]
     
     # figsize es el tamaño de la figura en pulgadas (width, height)
     plt.figure(figsize=(10, 6))
@@ -24,7 +24,6 @@ def graficar_tiempos(lista_metodos_ord):
     plt.title('Comparación de tiempos de ordenamiento')
     plt.legend() # para mostrar el nombre del método de ordenamiento. Es el "label" del metodo plot
     plt.grid() # cuadriculado
-    plt.savefig('grafico_tiempos.png')
-    plt.show(block=True)
-
+    plt.show()
+    
 graficar_tiempos([ordenamiento_burbuja, ordenamiento_de_residuo, ordenamiento_quicksort])

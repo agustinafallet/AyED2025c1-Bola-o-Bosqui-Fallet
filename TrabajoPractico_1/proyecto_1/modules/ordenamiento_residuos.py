@@ -23,10 +23,10 @@ def brecha(lista, inicio, brecha):
             posicion = posicion - brecha
 
         lista[posicion] = valor_actual
-        
-lista=[r.randint(10000,50000) for _ in range(1,500)]
-lista_basura=ordenamiento_de_residuo(lista)
+if __name__ == "__main__":     
+    lista=[r.randint(10000,50000) for _ in range(1,500)]
+    lista_basura=ordenamiento_de_residuo(lista)
 
-lista_sorteada=sorted(lista)
+    lista_sorteada=sorted(lista)
 
-assert lista_basura == lista_sorteada
+    assert lista_basura == lista_sorteada
