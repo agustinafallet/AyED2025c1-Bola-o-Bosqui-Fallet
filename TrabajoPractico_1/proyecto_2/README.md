@@ -36,8 +36,9 @@ El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
 ---
 ## 🙎‍♀️🙎‍♂️Autores
 
-- Apellido y Nombre del primer integrante
-- Apellido y Nombre del primer integrante
+- Bolaño Gelabert, Ángeles Tatiana
+- Bosqui, Camila Mariel
+- Fallet, Agustina
 
 ---
 
