@@ -22,11 +22,13 @@ class Nodo: #definimos nodo doblemente enlazado
     def asignaranterior(self, nuevoanterior):
         self.anterior = nuevoanterior
 
-class ListaDoblementeEnlazada:
+class ListaDobleEnlazada:
     def __init__(self, dato):
         self.cabeza = None
         self.cola = None
         self.tamanio= 0
+
+#agregar proterty , setter
 
     def esta_vacia(self):
         if self.tamanio == 0:
@@ -104,14 +106,14 @@ class ListaDoblementeEnlazada:
     #copiar(): Realiza una copia de la lista elemento a elemento y devuelve la copia.
     # Verificar que el orden de complejidad de este método sea O(n) y no O(n2).
     def copiar(self):
-        lista_copia = ListaDoblementeEnlazada(None)
+        lista_copia = ListaDobleEnlazada(None)
         actual = self.cabeza
         while actual is not None:
             lista_copia.agregar_al_final(actual.dato)
             actual = actual.siguiente
         return lista_copia
     def invertir(self):
-        lista_invertida = ListaDoblementeEnlazada(None)
+        lista_invertida = ListaDobleEnlazada(None)
         actual = self.cabeza
         while actual is not None:
             lista_invertida.agregar_al_inicio(actual.dato)
@@ -131,7 +133,7 @@ class ListaDoblementeEnlazada:
     #__add__(Lista): El resultado de “sumar” dos listas debería ser una nueva lista con los elementos de la primera lista y 
     # los de la segunda. Aprovechar el método concatenar para evitar repetir código.
     def __add__(self, otralista):
-        nueva_lista =  ListaDoblementeEnlazada(None)
+        nueva_lista =  ListaDobleEnlazada(None)
         nueva_lista.cabeza = self.cabeza
         nueva_lista.cola = self.cola
         nueva_lista.tamanio = self.tamanio
@@ -144,7 +146,7 @@ class ListaDoblementeEnlazada:
             yield actual.dato
             actual = actual.siguiente
             
-lista1 = ListaDoblementeEnlazada(None)
+lista1 = ListaDobleEnlazada(None)
 lista1.agregar_al_inicio(1)
 lista1.agregar_al_inicio(2)
 lista1.agregar_al_final(3)
