@@ -146,17 +146,19 @@ class ListaDobleEnlazada:
             yield actual.dato
             actual = actual.siguiente
             
-lista1 = ListaDobleEnlazada(None)
-lista1.agregar_al_inicio(1)
-lista1.agregar_al_inicio(2)
-lista1.agregar_al_final(3)
-lista1.insertar(45,1)
-print(lista1.extraer(1).dato)
-print(lista1.extraer(0).dato)
-print(lista1.__iter__())
-    
-    
 
+
+
+
+
+    
+if __name__ == "__main__":
+    lista1 = ListaDobleEnlazada(None)
+    lista1.agregar_al_inicio(1)
+    lista1.agregar_al_inicio(2)
+    lista1.agregar_al_final(3)
+    lista1.insertar(45,1)
+    print(lista1)
 
 
     

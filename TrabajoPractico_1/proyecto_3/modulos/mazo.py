@@ -1,7 +1,7 @@
 # mazo.py
 
-from proyecto_2.modules.LDE import ListaDobleEnlazada
-from 
+from proyecto_2.modulos import ListaDobleEnlazada
+# from 
 # class DequeEmptyError(Exception)
 #     if Exception = True 
 #         raise Exception ()
