@@ -24,15 +24,33 @@ class Nodo: #definimos nodo doblemente enlazado
 
 class ListaDobleEnlazada:
     def __init__(self):
-        self.cabeza = None
-        self.cola = None
-        self.tamanio= 0
+        self._cabeza = None
+        self._cola = None
+        self._tamanio= 0
 
 #agregar proterty , setter
-
+    @property
+    def cabeza(self):
+        return self._cabeza
+    
+    @cabeza.setter
+    def cabeza(self,nueva_cabeza):
+        self._cabeza = nueva_cabeza
+    
+    @property
+    def cola(self):
+        return self._cola
+    @cola.setter
+    def cola(self, nueva_cola):
+        self._cola = nueva_cola 
+    
+    @property
+    def tamanio(self):
+        return self._tamanio
+        
     def esta_vacia(self):
-        if self.tamanio == 0:
-            return True
+        return self.tamanio == 0
+    
 
     def __len__(self):
         return self.tamanio
@@ -47,7 +65,7 @@ class ListaDobleEnlazada:
             nuevonodo.siguiente= self.cabeza
             self.cabeza.anterior = nuevonodo
             self.cabeza = nuevonodo
-        self.tamanio +=1
+        self._tamanio +=1
 
     def agregar_al_final(self, dato):
         nuevonodo=Nodo(dato)
@@ -58,10 +76,10 @@ class ListaDobleEnlazada:
             nuevonodo.anterior = self.cola
             self.cola.siguiente = nuevonodo
             self.cola = nuevonodo
-        self.tamanio+=1
+        self._tamanio+=1
 
     def insertar(self, dato, posicion):
-        if posicion < 0 or posicion >= self.tamanio:
+        if posicion < 0 or posicion > self.tamanio:
             raise Exception ("Posición Inválida")
 
         if posicion == 0:
@@ -77,50 +95,67 @@ class ListaDobleEnlazada:
             nuevodato.siguiente = actual
             actual.siguiente = nuevodato
             actual.anterior = nuevodato
-            self.tamanio +=1
+            self._tamanio +=1
 
-    def extraer(self,posicion):
-        if posicion < 0 or posicion > self.tamanio:
-             raise Exception ("Posición Inválida")
+    def extraer(self,posicion=None):
+        if self.esta_vacia():
+             raise Exception ("Lista Inválida")
         
-        if posicion == None or posicion == self.tamanio:
+        if posicion is None:
+            posicion = self.tamanio -1
+            
+        if posicion < 0:
+            posicion += self.tamanio
+            
+        if posicion < 0 or posicion >= self.tamanio:
+            raise Exception ("Posición Inválida")
+        if posicion == self.tamanio -1:
             nodo_eliminado= self.cola
             self.cola=self.cola.anterior
-            self.tamanio -=1
-            return nodo_eliminado
+            if self.cola is not None:
+                self.cola.siguiente = None
+            else:
+                self.cabeza = None
+            self._tamanio -=1
+            return nodo_eliminado.dato
         elif posicion == 0:
             nodo_eliminado = self.cabeza
             self.cabeza = self.cabeza.siguiente
-            self.tamanio -=1
-            return nodo_eliminado
+            if self.cabeza != None: 
+                self.cabeza.anterior= None
+            else:
+                self.cola = None
+            self._tamanio -=1
+            return nodo_eliminado.dato
         else:
             nodo_eliminado = self.cabeza
             for _ in range(posicion):
                 nodo_eliminado = nodo_eliminado.siguiente
             anterior = nodo_eliminado.anterior
             siguiente = nodo_eliminado.siguiente
-            anterior = siguiente
-            siguiente = anterior
-            self.tamanio -=1
-            return nodo_eliminado
-    #copiar(): Realiza una copia de la lista elemento a elemento y devuelve la copia.
-    # Verificar que el orden de complejidad de este método sea O(n) y no O(n2).
+            if anterior is not None:
+                anterior.siguiente = siguiente
+            if siguiente is not None:   
+                siguiente.anterior = anterior
+            self._tamanio -=1
+            return nodo_eliminado.dato
+        
     def copiar(self):
-        lista_copia = ListaDobleEnlazada(None)
+        lista_copia = ListaDobleEnlazada()
         actual = self.cabeza
         while actual is not None:
             lista_copia.agregar_al_final(actual.dato)
             actual = actual.siguiente
         return lista_copia
+    
     def invertir(self):
-        lista_invertida = ListaDobleEnlazada(None)
         actual = self.cabeza
+        self.cabeza = self.cola
+        self.cola = self.cabeza
         while actual is not None:
-            lista_invertida.agregar_al_inicio(actual.dato)
-            actual = actual.siguiente
-        return lista_invertida
-    #concatenar(Lista): Recibe una lista como argumento y retorna la lista actual con la lista pasada como parámetro concatenada al 
-    # final de la primera.
+            actual.anterior, actual.siguiente = actual.siguiente, actual.anterior
+            actual = actual.anterior
+   
     def concatenar(self, lista):
         if self.cabeza is None:
             self.cabeza = lista.cabeza
@@ -129,17 +164,13 @@ class ListaDobleEnlazada:
             self.cola.siguiente = lista.cabeza
             lista.cabeza.anterior = self.cola
             self.cola = lista.cola
-        self.tamanio += lista.tamanio
-    #__add__(Lista): El resultado de “sumar” dos listas debería ser una nueva lista con los elementos de la primera lista y 
-    # los de la segunda. Aprovechar el método concatenar para evitar repetir código.
+        self._tamanio += lista.tamanio 
+        
     def __add__(self, otralista):
-        nueva_lista =  ListaDobleEnlazada(None)
-        nueva_lista.cabeza = self.cabeza
-        nueva_lista.cola = self.cola
-        nueva_lista.tamanio = self.tamanio
+        nueva_lista =  self.copiar()
         nueva_lista.concatenar(otralista)
         return nueva_lista
-#iterar sobre la lista
+
     def __iter__(self):
         actual = self.cabeza
         while actual is not None:
@@ -153,12 +184,12 @@ class ListaDobleEnlazada:
 
     
 if __name__ == "__main__":
-    lista1 = ListaDobleEnlazada(None)
+    lista1 = ListaDobleEnlazada()
     lista1.agregar_al_inicio(1)
     lista1.agregar_al_inicio(2)
     lista1.agregar_al_final(3)
-    lista1.insertar(45,1)
-    print(lista1)
+    lista1.insertar(45,0)
+
 
 
     

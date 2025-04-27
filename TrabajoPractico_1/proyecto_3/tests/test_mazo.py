@@ -6,8 +6,8 @@ Created on Sun Aug 21 11:23:53 2022
 """
 
 
-from modulos.carta import Carta
-from modulos.mazo import Mazo
+from proyecto_3.modulos.carta import Carta
+from proyecto_3.modulos.mazo import Mazo
 import unittest
 
 
@@ -25,11 +25,13 @@ class TestMazo(unittest.TestCase):
 
         # Se sacan las cartas arriba
         carta_control = self.mazo.sacar_carta_arriba()
-        self.assertIs(carta2, carta_control)
-
+        self.assertEqual(carta2.valor, carta_control.valor)
+        self.assertEqual(carta2.palo, carta_control.palo)
+        
         #Se verifica que la carta que queda en el mazo se la que se coloco primero
         carta_control = self.mazo.sacar_carta_arriba()
-        self.assertIs(carta1, carta_control)
+        self.assertEqual(carta1.valor, carta_control.valor)
+        self.assertEqual(carta1.palo, carta_control.palo)
 
 
     def test_poner_abajo(self):                     #Poner abajo al momento de ganar el turno
@@ -42,12 +44,17 @@ class TestMazo(unittest.TestCase):
 
         # Sacamos la carta superior (que debería ser la primera que pusimos en la parte de arriba)
         carta_control = self.mazo.sacar_carta_arriba()
-        self.assertIs(carta1, carta_control)  # La carta que sacamos debe ser carta1, ya que fue la primera en ponerse abajo
+        self.assertEqual(carta1.valor, carta_control.valor)
+        self.assertEqual(carta1.palo, carta_control.palo)  # La carta que sacamos debe ser carta1, ya que fue la primera en ponerse abajo
 
         # Sacamos la siguiente carta, que debería ser la carta que pusimos al final (carta2)
         carta_control = self.mazo.sacar_carta_arriba()
-        self.assertIs(carta2, carta_control)  # La siguiente carta debe ser carta2
+        self.assertEqual(carta2.valor, carta_control.valor)
+        self.assertEqual(carta2.palo, carta_control.palo) # La siguiente carta debe ser carta2
         
         
 if __name__ == '__main__':
     unittest.main()
+
+# Para correr el test, se puede usar el siguiente comando en la terminal:
+# python -m unittest -v proyecto_3.tests.test_mazo
