@@ -23,7 +23,7 @@ class Nodo: #definimos nodo doblemente enlazado
         self.anterior = nuevoanterior
 
 class ListaDobleEnlazada:
-    def __init__(self, dato):
+    def __init__(self):
         self.cabeza = None
         self.cola = None
         self.tamanio= 0
