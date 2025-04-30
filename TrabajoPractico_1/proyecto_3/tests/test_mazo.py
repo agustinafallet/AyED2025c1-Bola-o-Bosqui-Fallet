@@ -6,8 +6,8 @@ Created on Sun Aug 21 11:23:53 2022
 """
 
 
-from proyecto_3.modulos.carta import Carta
-from proyecto_3.modulos.mazo import Mazo
+from modulos.carta import Carta
+from modulos.mazo import Mazo
 import unittest
 
 
@@ -55,6 +55,3 @@ class TestMazo(unittest.TestCase):
         
 if __name__ == '__main__':
     unittest.main()
-
-# Para correr el test, se puede usar el siguiente comando en la terminal:
-# python -m unittest -v proyecto_3.tests.test_mazo

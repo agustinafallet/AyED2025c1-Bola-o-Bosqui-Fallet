@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from proyecto_2.modulos.ListaDobleEnlazada import ListaDobleEnlazada
+from modulos.ListaDobleEnlazada import ListaDobleEnlazada
 
 
 class DequeEmptyError(Exception):

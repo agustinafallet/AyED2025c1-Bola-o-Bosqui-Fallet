@@ -2,7 +2,8 @@
 
 Breve descripción del proyecto:
 
-Ejemplo: “Este es un script en el que se comparan algoritmos de ordenamiento. Permite [describir funcionalidades principales].
+   En este proyecto, definiremos la clase ListaDobleEnlazada, la clase Carta y la clase Mazo que nos servirán como herramientas para escribir la clase JuegoGuerra y proceder a testear la clase Mazo y JuegoGuerra.
+
 
 ---
 ## 🏗Arquitectura General
@@ -36,8 +37,9 @@ El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
 ---
 ## 🙎‍♀️🙎‍♂️Autores
 
-- Apellido y Nombre del primer integrante
-- Apellido y Nombre del primer integrante
+- Bolaño, Angeles Tatiana
+- Bosqui, Camila Mariel
+- Fallet, Agustina
 
 ---
 
