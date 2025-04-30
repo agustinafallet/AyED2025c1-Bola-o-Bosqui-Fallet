@@ -27,8 +27,7 @@ class ListaDobleEnlazada:
         self._cabeza = None
         self._cola = None
         self._tamanio= 0
-
-#agregar proterty , setter
+    
     @property
     def cabeza(self):
         return self._cabeza
