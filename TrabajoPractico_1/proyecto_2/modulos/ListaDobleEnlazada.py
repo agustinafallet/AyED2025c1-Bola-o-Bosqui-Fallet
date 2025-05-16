@@ -78,9 +78,9 @@ class ListaDobleEnlazada:
         self._tamanio+=1
 
     def insertar(self, dato, posicion):
-        if posicion < 0 or posicion > self.tamanio:
+        if  posicion<0 or posicion > self.tamanio:
             raise Exception ("Posición Inválida")
-
+       
         if posicion == 0:
             self.agregar_al_inicio (dato)
         elif posicion == self.tamanio:
@@ -92,7 +92,7 @@ class ListaDobleEnlazada:
                 actual= actual.siguiente
             nuevodato.anterior = actual.anterior
             nuevodato.siguiente = actual
-            actual.siguiente = nuevodato
+            actual.anterior.siguiente = nuevodato
             actual.anterior = nuevodato
             self._tamanio +=1
 
@@ -149,19 +149,17 @@ class ListaDobleEnlazada:
     
     def invertir(self):
         actual = self.cabeza
-        self.cabeza = self.cola
-        self.cola = self.cabeza
+        self.cabeza, self.cola = self.cola, self.cabeza
         while actual is not None:
             actual.anterior, actual.siguiente = actual.siguiente, actual.anterior
             actual = actual.anterior
+
    
     def concatenar(self, lista):
         if self.cabeza is None:
-            self.cabeza = lista.cabeza
-            self.cola = lista.cola
+            self.cabeza, self.cola = lista.cabeza, lista.cola
         elif lista.cabeza is not None:
-            self.cola.siguiente = lista.cabeza
-            lista.cabeza.anterior = self.cola
+            self.cola.siguiente  = lista.cabeza
             self.cola = lista.cola
         self._tamanio += lista.tamanio 
         
@@ -175,8 +173,14 @@ class ListaDobleEnlazada:
         while actual is not None:
             yield actual.dato
             actual = actual.siguiente
+    def __str__(self):
+        elementos = []
+        actual = self.cabeza
+        while actual is not None:
+            elementos.append(str(actual.dato))
+            actual = actual.siguiente
+        return " <-> ".join(elementos)
             
-
 
 
 
@@ -184,10 +188,22 @@ class ListaDobleEnlazada:
     
 if __name__ == "__main__":
     lista1 = ListaDobleEnlazada()
-    lista1.agregar_al_inicio(1)
-    lista1.agregar_al_inicio(2)
-    lista1.agregar_al_final(3)
-    lista1.insertar(45,0)
+    # lista1.agregar_al_inicio(1)
+    # lista1.agregar_al_inicio(2)
+    # lista1.agregar_al_final(3)
+    # lista1.insertar(45,0)
+    # print(lista1.extraer(0))
+    for i in range (10):
+        lista1.agregar_al_final(i)
+    # print(lista1)
+    # lista1.invertir()
+    # print(lista1)
+    lista2 = ListaDobleEnlazada()
+    for i in range (10,20):
+        lista2.agregar_al_final(i)
+        
+    lista1.concatenar(lista2)
+    print(lista1)   
 
 
 
