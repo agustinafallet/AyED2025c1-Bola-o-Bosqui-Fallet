@@ -1,0 +1,62 @@
+Lomaseca, Pepino, 3
+Lomaseca, Los Infiernos, 2
+Lomaseca, El Cerrillo, 5
+Lomaseca, Peligros, 7
+El Cerrillo, Lomaseca, 5
+El Cerrillo, Los Infiernos, 5
+El Cerrillo, Malcocinado, 6
+Hortijos, Humilladero, 5
+Hortijos, Villaviciosa, 10
+Hortijos, Cebolla, 20
+Torralta, Silla, 4
+Torralta, Villaviciosa, 8
+Torralta, Humilladero, 9
+Humilladero, Hortijos, 5
+Humilladero, Torralta, 9
+La Pera, Los Infiernos, 3
+La Pera, Pepino, 4
+La Pera, Espera, 3
+Pepino, Espera, 4
+Pepino, Lomaseca, 3
+Pepino, La Pera, 4
+Elciego, Diosleguarde, 7
+Elciego, Melón, 3
+Villaviciosa, Hortijos, 10
+Villaviciosa, Torralta, 8
+Consuegra, Malcocinado, 1
+Malcocinado, El Cerrillo, 6
+Malcocinado, Consuegra, 1
+Malcocinado, Aceituna, 2
+Malcocinado, Peligros, 8
+Malcocinado, Diosleguarde, 9
+Peligros, Lomaseca, 7
+Peligros, Malcocinado, 8
+Peligros, La Aparecida, 5
+Silla, Torralta, 4
+Silla, Pancrudo, 6
+Silla, La Aparecida, 5
+Cebolla, Hortijos, 20
+Cebolla, Buenas Noches, 2
+Cebolla, Pancrudo, 2
+La Aparecida, Peligros, 5
+La Aparecida, Silla, 5
+La Aparecida, Pancrudo, 8
+La Aparecida, Buenas Noches, 3
+Melón, Elciego, 3
+Melón, Diosleguarde, 11
+Melón, Buenas Noches, 20
+Los Infiernos, Lomaseca, 2
+Los Infiernos, La Pera, 3
+Los Infiernos, El Cerrillo, 5
+Espera, Pepino, 4
+Espera, La Pera, 3
+Aceituna, Malcocinado, 2
+Pancrudo, Silla, 6
+Pancrudo, Cebolla, 2
+Pancrudo, La Aparecida, 8
+Diosleguarde, Elciego, 7
+Diosleguarde, Malcocinado, 9
+Diosleguarde, Melón, 11
+Buenas Noches, Cebolla, 2
+Buenas Noches, La Aparecida, 3
+Buenas Noches, Melón, 20
