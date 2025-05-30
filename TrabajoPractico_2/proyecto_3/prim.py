@@ -11,15 +11,17 @@ def prim(G, inicio):
         v.asignar_distancia(sys.maxsize) # inicializo distancia a infinito
         v.asignar_predecesor(None) 
     inicio.asignar_distancia(0)
-    cp.construirMonticulo([(v.obtener_distancia(), v) for v in G])
+    a = [(v.obtener_distancia(), v) for v in G]
+    b = cp.construirMonticulo(a)
+    print("b",b)
     while not cp.estaVacio():
         vertice_actual = cp.eliminarMin()[1]
         for vertice_siguiente in vertice_actual.obtener_conexiones():
             nuevo_costo = vertice_actual.obtener_ponderacion(vertice_siguiente) # comienza función de relajación
             
             print(f"Evaluando arista {vertice_actual.obtener_id()} -> {vertice_siguiente.obtener_id()} con costo {nuevo_costo}")
-            #if cp.contiene(vertice_siguiente) and
-            if nuevo_costo < vertice_siguiente.obtener_distancia():
+            print(f"Vertice: {v.obtener_id()}, Predecesor: {v.obtener_predecesor().obtener_id() if v.obtener_predecesor() else None}, Distancia: {v.obtener_distancia()}")
+            if cp.contiene(vertice_siguiente) and nuevo_costo < vertice_siguiente.obtener_distancia():
                 print(f"Relajando arista {vertice_actual.obtener_id()} -> {vertice_siguiente.obtener_id()} con costo {nuevo_costo}")
                 vertice_siguiente.asignar_predecesor(vertice_actual) 
                 print(f"Actualizando vertice {vertice_siguiente.obtener_id()} con predecesor {vertice_actual.obtener_id()} y costo {nuevo_costo}")
