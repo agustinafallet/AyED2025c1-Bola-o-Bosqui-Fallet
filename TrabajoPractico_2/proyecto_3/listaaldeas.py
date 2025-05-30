@@ -1,5 +1,5 @@
-import grafo
-import monticulo_binario
+from grafo import Grafo
+from monticulo_binario import MonticuloBinario
 aldeas = []
 aldeas_nombre = []
 with open("aldeas.txt","r") as archie:
@@ -9,9 +9,6 @@ with open("aldeas.txt","r") as archie:
         aldea_inicial = linea[0]
         aldea_final = linea[1]
         distancia=int(linea[2])
-        # print(aldea_inicial)
-        # print(aldea_final)
-        # print(distancia)
         aldeas_nombre.append([aldea_inicial])
         aldeas.append([aldea_inicial, aldea_final, distancia])
 aldeas_norep=[]
@@ -23,7 +20,11 @@ for aldea in aldeas_nombre:
                   
 
 aldeas_nombre_ord= sorted(aldeas_norep, key = lambda x:x[0], reverse = False)
-print(f"las aldeas iniciales ordenadas alfabeticamente y sin repeticion:{aldeas_nombre_ord}")
+print(f"Las aldeas iniciales ordenadas alfabéticamente y sin repetición:{aldeas_nombre_ord}")
 
-
+if __name__ == "__main__":
+      g= Grafo()
+      g.agregar_vertices("Aldea")
+      for aldea in aldeas:
+            g.agregar_vertices(aldea[0])
 

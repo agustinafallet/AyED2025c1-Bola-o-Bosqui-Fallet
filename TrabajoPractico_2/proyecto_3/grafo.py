@@ -1,8 +1,13 @@
+import sys
+
 class Vertice:
     def __init__(self, clave):
         self.id= clave
         self.conectadoA = {}
+        self.distancia = None  # Inicializa la distancia como infinito
+        self.predecesor = None  # Inicializa el predecesor como None
 
+    
     def agregar_vecino(self, vecino, ponderacion=0):
         self.conectadoA[vecino] = ponderacion
 
@@ -17,6 +22,18 @@ class Vertice:
     
     def obtener_ponderacion(self, vecino):
         return self.conectadoA[vecino]
+    
+    def asignar_distancia(self, distancia):
+        self.distancia = distancia
+
+    def obtener_distancia(self):
+        return self.distancia  
+    
+    def asignar_predecesor(self, predecesor):
+        self.predecesor = predecesor
+
+    def obtener_predecesor(self):
+        return self.predecesor
     
  
 class Grafo:
@@ -72,7 +89,10 @@ if __name__ == "__main__":
     for v in g:
         for w in v.obtener_conexiones():
             print("( %s , %s )" % (v.obtener_id(), w.obtener_id()))
-
-        
-        
+    g.obtener_vertice(0).asignar_distancia(10)
+    print(g.obtener_vertice(0).obtener_distancia())  # Debería imprimir 10
+    g.obtener_vertice(0).asignar_predecesor(g.obtener_vertice(1))
+    print(g.obtener_vertice(0).obtener_predecesor().obtener_id())  # Debería imprimir 1 
+    print(g.obtener_vertice(0))  # Debería imprimir el objeto Vertice con id 0 y sus conexiones
+    #print(g.obtener_ponderacion(g.obtener_vertice(1)))  # Debería imprimir la ponderación de la arista entre 0 y 1
 
