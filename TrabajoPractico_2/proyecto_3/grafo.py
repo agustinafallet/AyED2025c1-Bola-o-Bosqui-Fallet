@@ -77,6 +77,7 @@ if __name__ == "__main__":
     for i in range(6):
         g.agregar_vertices(i)
         g.lista_vertices
+        print(g)
     g.agregar_aristas(0,1,5)
     g.agregar_aristas(0,5,2)
     g.agregar_aristas(1,2,4)
@@ -94,5 +95,4 @@ if __name__ == "__main__":
     g.obtener_vertice(0).asignar_predecesor(g.obtener_vertice(1))
     print(g.obtener_vertice(0).obtener_predecesor().obtener_id())  # Debería imprimir 1 
     print(g.obtener_vertice(0))  # Debería imprimir el objeto Vertice con id 0 y sus conexiones
-    #print(g.obtener_ponderacion(g.obtener_vertice(1)))  # Debería imprimir la ponderación de la arista entre 0 y 1
-
+    #print(g.obtener_distancia(g.obtener_vertice(1)))  # Debería imprimir la ponderación de la arista entre 0 y 1

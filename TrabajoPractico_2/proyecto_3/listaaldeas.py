@@ -1,5 +1,4 @@
 from grafo import Grafo
-from monticulo_binario import MonticuloBinario
 aldeas = []
 aldeas_nombre = []
 with open("aldeas.txt","r") as archie:
