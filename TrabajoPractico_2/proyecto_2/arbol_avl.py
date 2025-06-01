@@ -54,7 +54,6 @@ class NodoArbol:
     @factor_de_equilibrio.setter
     def factor_de_equilibrio(self, valor):
         self.__factor_de_equilibrio = valor
-    
         
     def hijo_izquierdo(self):
         return self.__izquierdo
@@ -75,8 +74,8 @@ class NodoArbol:
         return not self.__izquierdo and not self.__derecho
     
     def tiene_un_hijo(self):
-        return self.__izquierdo or self.__derecho
-    
+        return (self.__izquierdo is not None) != (self.__derecho is not None)  # Solo uno de los dos
+
     def tiene_ambos_hijos(self):
         return self.__izquierdo and self.__derecho
     
@@ -157,6 +156,76 @@ class ArbolAVL:
                 nodoactual.derecho = NodoArbol(clave,valor,padre=nodoactual)
                 self.nuevo_equilibrio(nodoactual.derecho)
     
+    def buscar(self, clave):
+        def _buscar(nodo, clave):
+            if nodo is None or nodo.clave == clave:
+                return nodo
+            elif clave < nodo.clave:
+                return _buscar(nodo.izquierdo, clave)
+            else:
+                return _buscar(nodo.derecho, clave)
+        
+        return _buscar(self.raiz, clave)
+    
+    def _buscar_sucesor(self, nodo):
+        nodo = nodo.derecho
+        while nodo.izquierdo:
+            nodo = nodo.izquierdo
+        return nodo
+    
+    def _eliminar(self, nodo):
+        padre = nodo.padre
+        if nodo.eshoja():
+            if nodo.esraiz():
+                self.raiz = None
+            else:
+                if nodo.eshijoizquierdo():
+                    nodo.padre.izquierdo = None
+                else:
+                    nodo.padre.derecho = None
+        elif nodo.tiene_un_hijo():
+            hijo = nodo.hijo_izquierdo() or nodo.hijo_derecho()
+            if nodo.esraiz():
+                self.raiz = hijo
+                if self.raiz:
+                    self.raiz.padre = None
+            else:
+                if nodo.eshijoizquierdo():
+                    nodo.padre.izquierdo = hijo
+                else:
+                    nodo.padre.derecho = hijo
+                hijo.padre = nodo.padre
+        else:
+            sucesor = self._buscar_sucesor(nodo)
+            nodo.clave, nodo.valor = sucesor.clave, sucesor.valor
+            self._eliminar(sucesor)  # Elimina el sucesor, que tendrá a lo sumo un hijo derecho
+
+        # Rebalancear desde el padre del nodo eliminado
+        actual = padre
+        while actual:
+            self.actualizar_factor(actual)
+            if actual.factor_de_equilibrio < -1:
+                if self.altura(actual.derecho.derecho) >= self.altura(actual.derecho.izquierdo):
+                    self.rotacion_izquierdo(actual)
+                else:
+                    self.rotacion_derecha(actual.derecho)
+                    self.rotacion_izquierdo(actual)
+            elif actual.factor_de_equilibrio > 1:
+                if self.altura(actual.izquierdo.izquierdo) >= self.altura(actual.izquierdo.derecho):
+                    self.rotacion_derecha(actual)
+                else:
+                    self.rotacion_izquierdo(actual.izquierdo)
+                    self.rotacion_derecha(actual)
+            actual = actual.padre
+    
+    def eliminar(self, clave):
+        nodo = self.buscar(clave)
+        if nodo:
+            self._eliminar(nodo)
+            self.tamanio -= 1
+            return True
+        return False
+    
     def nuevo_equilibrio(self,nodo):
         while nodo:
             self.actualizar_factor(nodo)
@@ -182,6 +251,7 @@ class ArbolAVL:
         nuevoRaiz.padre = rotRaiz.padre
         if rotRaiz.esraiz():
             self.raiz = nuevoRaiz
+            self.raiz.padre = None
         else:
             if rotRaiz.eshijoizquierdo():
                 rotRaiz.padre.izquierdo = nuevoRaiz
@@ -237,5 +307,14 @@ if __name__ == "__main__":
         
     print("Tamaño del árbol:", arbol.longitud())
     print("Raíz del árbol:", arbol.raiz.clave)
- 
-    
+    print("Buscar clave 30:", arbol.buscar(30).valor)
+    print("Buscar clave 100:", arbol.buscar(100))  # No debería encontrar nada
+    arbol.eliminar(30)
+    print("Después de eliminar clave 30:")
+    for i in arbol:
+        print(i.clave, i.valor)
+    print("Tamaño del árbol después de eliminar:", arbol.longitud())
+    print("Raíz del árbol después de eliminar:", arbol.raiz.clave)
+
+
+
