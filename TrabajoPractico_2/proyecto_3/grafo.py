@@ -4,9 +4,14 @@ class Vertice:
     def __init__(self, clave):
         self.id= clave
         self.conectadoA = {}
-        self.distancia = None  # Inicializa la distancia como infinito
+        self.distancia = None  # Inicializa la distancia como None
         self.predecesor = None  # Inicializa el predecesor como None
 
+    def __eq__(self, other):
+        return isinstance(other, Vertice) and self.id == other.id
+
+    def __hash__(self):
+        return hash(self.id)
     
     def agregar_vecino(self, vecino, ponderacion=0):
         self.conectadoA[vecino] = ponderacion
@@ -42,10 +47,12 @@ class Grafo:
         self.num_vertices=0
     
     def agregar_vertices(self, clave):
-        self.num_vertices=self.num_vertices + 1
-        nuevo_vertice= Vertice(clave)
-        self.lista_vertices[clave]= nuevo_vertice
-        return nuevo_vertice
+        if clave not in self.lista_vertices:
+            self.num_vertices += 1
+            nuevo_vertice = Vertice(clave)
+            self.lista_vertices[clave] = nuevo_vertice
+            return nuevo_vertice
+        return self.lista_vertices[clave]
     
     def obtener_vertice(self, n):
         if n in self.lista_vertices:
@@ -58,11 +65,12 @@ class Grafo:
     
     def agregar_aristas(self, de, a, costo=0):
         if de not in self.lista_vertices:
-            nv=self.agregar_vertices(de)
+            self.agregar_vertices(de)
         if a not in self.lista_vertices:
-            nv=self.agregar_vertices(a)
+            self.agregar_vertices(a)
         self.lista_vertices[de].agregar_vecino(self.lista_vertices[a], costo)
-    
+        self.lista_vertices[a].agregar_vecino(self.lista_vertices[de], costo) 
+   
     def obtener_vertices(self):
         return self.lista_vertices.keys()
     
