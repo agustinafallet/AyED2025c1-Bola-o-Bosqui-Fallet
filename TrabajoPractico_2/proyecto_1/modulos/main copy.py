@@ -25,12 +25,14 @@ for i in range(n):
     # La criticidad del paciente es aleatoria
     paciente = pac.Paciente()
    
+   #
    #         print(paciente.get_riesgo()) #accedemos al nivel de riesgo a partir de su ubcacion en la memoria
-    
+
     cola_de_espera.insertar(paciente)
 
     # # Atención de paciente en este ciclo: en el 50% de los casos
-    if random.random() < 0.5:
+    #if random.random() < 0.5:
+    if random.randint(0, 20) < 0.5:
         # se atiende paciente que se encuentra al frente de la cola
         paciente_atendido = cola_de_espera.eliminarMin()
         print('*'*40)

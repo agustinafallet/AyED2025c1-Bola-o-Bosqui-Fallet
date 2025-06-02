@@ -58,6 +58,7 @@ class MonticuloBinario: #utilizamos el concepto de MB apara la construccion de u
 
     def __iter__(self):
         return iter(self.listaMonticulo)
+
     
 if __name__ == "__main__":
 
@@ -69,3 +70,11 @@ if __name__ == "__main__":
     print(lista1.listaMonticulo)
     for i in lista1:
         print(i)
+    print(f"tamaño:{lista1.__len__()}")
+    print(lista1.eliminarMin())
+    print(lista1.listaMonticulo)
+    print(f"tamaño:{lista1.__len__()}")
+    lista1.construirMonticulo([40, 30, 2, 10])
+    print(lista1.listaMonticulo)
+    lista1.insertar(5)
+    print(lista1.listaMonticulo)
