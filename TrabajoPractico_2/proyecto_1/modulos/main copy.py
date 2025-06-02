@@ -31,8 +31,7 @@ for i in range(n):
     cola_de_espera.insertar(paciente)
 
     # # Atención de paciente en este ciclo: en el 50% de los casos
-    #if random.random() < 0.5:
-    if random.randint(0, 20) < 0.5:
+    if random.random() < 0.5:
         # se atiende paciente que se encuentra al frente de la cola
         paciente_atendido = cola_de_espera.eliminarMin()
         print('*'*40)
