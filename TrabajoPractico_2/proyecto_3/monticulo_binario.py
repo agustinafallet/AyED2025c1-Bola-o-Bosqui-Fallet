@@ -3,6 +3,7 @@ class MonticuloBinario:
         self.listaMonticulo = [0]
         self.tamanoActual = 0
     
+    
     def infiltrarArriba(self, pos):
         while pos // 2 > 0:
             if self.listaMonticulo[pos][0] < self.listaMonticulo[pos // 2][0]:
@@ -42,12 +43,27 @@ class MonticuloBinario:
     def construirMonticulo(self,unaLista):
         for i in unaLista:
             self.insertar(i)
+        
 
     def estaVacio(self):
         return self.tamanoActual ==None or self.tamanoActual == 0
     
     def contiene(self, vertice):
-        return any(item[1] == vertice for item in self.listaMonticulo[1:])
+        for i in self.listaMonticulo[1:][1]:
+            if i == vertice:
+                a= True
+            else:
+                a= False
+        return a
+        #return any (item == vertice for item in self.listaMonticulo[1:])
+        
+    def __iter__(self):
+        for i in range (1, len(self.listaMonticulo)):
+            yield self.listaMonticulo[i]
+
+    def __str__(self):
+        for i in self.listaMonticulo:
+            print(i)
 
     def decrementarClave(self, vertice, nuevaClave):   #el formato en el que se recibe es (clave, vertice)
         # Busca la posición de la tupla que contiene el vértice
@@ -70,7 +86,7 @@ if __name__ == "__main__":
     b.construirMonticulo([(2, 'F'), (6, 'G'), (0, 'H')])
     print("Montículo después de construir desde una lista:", b.listaMonticulo)
     print("¿Está vacío el montículo?", b.estaVacio())
-    print("¿Contiene el valor (3, 'B')?", b.contiene((3, 'B')))
+    print("¿Contiene el valor (3, 'B')?", b.contiene(('B')))
     b.decrementarClave ('G', 1)  
     print("Montículo después de decrementar clave:", b.listaMonticulo)
-
+    

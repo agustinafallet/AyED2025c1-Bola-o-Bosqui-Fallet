@@ -4,11 +4,11 @@ class Vertice:
     def __init__(self, clave):
         self.id= clave
         self.conectadoA = {}
-        self.distancia = None  # Inicializa la distancia como None
+        self.distancia = sys.maxsize  # Inicializa la distancia como None
         self.predecesor = None  # Inicializa el predecesor como None
 
     def __eq__(self, other):
-        return isinstance(other, Vertice) and self.id == other.id
+        return isinstance(other, Vertice) and self.id == other.id and self.predecesor == other.predecesor
 
     def __hash__(self):
         return hash(self.id)
@@ -69,7 +69,7 @@ class Grafo:
         if a not in self.lista_vertices:
             self.agregar_vertices(a)
         self.lista_vertices[de].agregar_vecino(self.lista_vertices[a], costo)
-        self.lista_vertices[a].agregar_vecino(self.lista_vertices[de], costo) 
+        #self.lista_vertices[a].agregar_vecino(self.lista_vertices[de], costo) 
    
     def obtener_vertices(self):
         return self.lista_vertices.keys()
@@ -85,7 +85,7 @@ if __name__ == "__main__":
     for i in range(6):
         g.agregar_vertices(i)
         g.lista_vertices
-        print(g)
+        #print(g)
     g.agregar_aristas(0,1,5)
     g.agregar_aristas(0,5,2)
     g.agregar_aristas(1,2,4)
@@ -104,3 +104,7 @@ if __name__ == "__main__":
     print(g.obtener_vertice(0).obtener_predecesor().obtener_id())  # Debería imprimir 1 
     print(g.obtener_vertice(0))  # Debería imprimir el objeto Vertice con id 0 y sus conexiones
     #print(g.obtener_distancia(g.obtener_vertice(1)))  # Debería imprimir la ponderación de la arista entre 0 y 1
+    vertice_a = Vertice(4)
+    vertice_c = Vertice(4)
+    vertice_a.asignar_predecesor(vertice_c)
+    
