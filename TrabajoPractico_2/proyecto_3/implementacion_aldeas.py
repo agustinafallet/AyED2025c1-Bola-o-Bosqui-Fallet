@@ -21,7 +21,7 @@ for aldea in aldeas_nombre:
                   continue 
 
 aldeas_nombre_ord= sorted(aldeas_norep, key = lambda x:x[0], reverse = False)
-print(len(aldeas_nombre_ord))
+
 print(f"Las aldeas iniciales ordenadas alfabéticamente y sin repetición son:")
 
 for aldea in aldeas_nombre_ord:

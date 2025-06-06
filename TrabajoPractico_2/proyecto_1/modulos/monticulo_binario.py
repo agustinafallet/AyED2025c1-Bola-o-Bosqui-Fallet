@@ -1,4 +1,4 @@
-class MonticuloBinario: #utilizamos el concepto de MB apara la construccion de una cola de prioridad
+class MonticuloBinario: #utilizamos el concepto de MB para la construccion de una cola de prioridad
     def __init__(self):
         self.listaMonticulo = [0]
         self.tamanoActual = 0
