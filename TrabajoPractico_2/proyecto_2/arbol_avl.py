@@ -5,7 +5,7 @@ class NodoArbol:
         self.__padre=padre
         self.__izquierdo=izquierdo
         self.__derecho=derecho
-        self.__factor_de_equilibrio = 0
+        self.__factor_de_equilibrio = 0 
     
     @property
     def clave(self):
@@ -175,7 +175,7 @@ class ArbolAVL:
     
     def _eliminar(self, nodo):
         padre = nodo.padre
-        if nodo.eshoja():
+        if nodo.eshoja(): # caso 1, se elimina directamente el nodo 
             if nodo.esraiz():
                 self.raiz = None
             else:
@@ -183,7 +183,7 @@ class ArbolAVL:
                     nodo.padre.izquierdo = None
                 else:
                     nodo.padre.derecho = None
-        elif nodo.tiene_un_hijo():
+        elif nodo.tiene_un_hijo(): # caso 2, si tiene un hijo, se busca el hijo y se vuelve el padre
             hijo = nodo.hijo_izquierdo() or nodo.hijo_derecho()
             if nodo.esraiz():
                 self.raiz = hijo
@@ -195,8 +195,8 @@ class ArbolAVL:
                 else:
                     nodo.padre.derecho = hijo
                 hijo.padre = nodo.padre
-        else:
-            sucesor = self._buscar_sucesor(nodo)
+        else: # caso 3, si tiene ambos hijos, se busca el menor del subarbol derecho, y ese pasa a ser el padre
+            sucesor = self._buscar_sucesor(nodo) 
             nodo.clave, nodo.valor = sucesor.clave, sucesor.valor
             self._eliminar(sucesor)  # Elimina el sucesor, que tendrá a lo sumo un hijo derecho
 

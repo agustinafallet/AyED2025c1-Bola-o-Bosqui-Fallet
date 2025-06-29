@@ -42,7 +42,7 @@ class Paciente:
         cad += str(self.__riesgo) + '-' + self.__descripcion
         return cad
      
-    def __lt__(self, otro):
+    def __lt__(self, otro): # permite comparar pacientes por complejidad de riesgo y si es el mismo, por orden de llegada
         if self.__riesgo == otro.get_riesgo():
             return self.__orden_llegada < otro.get_orden_llegada()
         return self.__riesgo < otro.get_riesgo()

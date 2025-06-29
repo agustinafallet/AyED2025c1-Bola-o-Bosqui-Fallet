@@ -3,10 +3,10 @@ class MonticuloBinario: #utilizamos el concepto de MB para la construccion de un
         self.listaMonticulo = [0]
         self.tamanoActual = 0
 
-    
+
 #funcion para mantener la condicion del monticulo.
     def infiltrarArriba(self, pos):
-        while pos // 2 > 0:
+        while pos // 2 > 0: #comprueba que no sea la raíz
             if self.listaMonticulo[pos] < self.listaMonticulo[pos//2]:
                 temp = self.listaMonticulo[pos//2]
                 self.listaMonticulo[pos//2]= self.listaMonticulo[pos]
@@ -25,7 +25,7 @@ class MonticuloBinario: #utilizamos el concepto de MB para la construccion de un
             if self.listaMonticulo[pos*2] < self.listaMonticulo[pos*2+1]:
                 return pos * 2
             else:
-                return pos * 2 + 1 #devuelve hijomax
+                return pos * 2 + 1 #retirna el hijo menor 
 
 #funcion para mantener la condicion del monticulo.
     def infiltrarAbajo(self, pos):

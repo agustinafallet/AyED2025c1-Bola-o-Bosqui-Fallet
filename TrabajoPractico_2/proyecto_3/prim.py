@@ -11,21 +11,21 @@ def prim(G, inicio):
     # Inicializar todas las distancias a infinito
     for v in G:
         v.asignar_distancia(sys.maxsize)
-        v.asignar_predecesor(None)
+        v.asignar_predecesor(None)  #el predecesor es None al inicio
     
     # Configurar vértice inicial
-    inicio.asignar_distancia(0)
-    cp.construirMonticulo([(v.obtener_distancia(), v) for v in G])
+    inicio.asignar_distancia(0)  
+    cp.construirMonticulo([(v.obtener_distancia(), v) for v in G]) #se crea un montículo con las distancias de los vértices
     
-    while not cp.estaVacio():
-        vertice_actual = cp.eliminarMin()[1]
-        visitados.add(vertice_actual)
+    while not cp.estaVacio():  #minetras no este vacío el montículo
+        vertice_actual = cp.eliminarMin()[1]  #se obtiene el vertice del inicio(con menor distancia)
+        visitados.add(vertice_actual)  #se agrega a los visitados
         
-        for vertice_siguiente in vertice_actual.obtener_conexiones():
-            if vertice_siguiente not in visitados:
-                nuevo_costo = vertice_actual.obtener_ponderacion(vertice_siguiente)
+        for vertice_siguiente in vertice_actual.obtener_conexiones(): #se obtienen los vertices adyac. al actual
+            if vertice_siguiente not in visitados: #si el siguiente no ha sido visitado
+                nuevo_costo = vertice_actual.obtener_ponderacion(vertice_siguiente) # se calcula el costo de la arista
     
-                if nuevo_costo < vertice_siguiente.obtener_distancia():
-                    vertice_siguiente.asignar_predecesor(vertice_actual)
-                    vertice_siguiente.asignar_distancia(nuevo_costo)
-                    cp.decrementarClave(vertice_siguiente, nuevo_costo)
+                if nuevo_costo < vertice_siguiente.obtener_distancia(): #si el nuevo costo es menor a la distancia del adyacente
+                    vertice_siguiente.asignar_predecesor(vertice_actual) #se le asigna de prdecesor al siguiente el actual
+                    vertice_siguiente.asignar_distancia(nuevo_costo) #se le asigna a su vez una distanncia=nuevo costo
+                    cp.decrementarClave(vertice_siguiente, nuevo_costo) #se infiltra hacia arriba el vertice siguiente(?) a chequear
