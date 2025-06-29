@@ -1,10 +1,10 @@
 class MonticuloBinario:
     def __init__(self):
-        self.listaMonticulo = [0]
-        self.tamanoActual = 0
+        self.listaMonticulo = [0] 
+        self.tamanoActual = 0 
     
     
-    def infiltrarArriba(self, pos):
+    def infiltrarArriba(self, pos): 
         while pos // 2 > 0:
             if self.listaMonticulo[pos][0] < self.listaMonticulo[pos // 2][0]:
                 self.listaMonticulo[pos], self.listaMonticulo[pos // 2] = self.listaMonticulo[pos // 2], self.listaMonticulo[pos]
@@ -46,31 +46,30 @@ class MonticuloBinario:
         
 
     def estaVacio(self):
-        return self.tamanoActual ==None or self.tamanoActual == 0
+        return self.tamanoActual == None or self.tamanoActual == 0 
     
-    def contiene(self, vertice):
+    def contiene(self, vertice): # verifica si el montículo contiene un vértice específico
         for i in self.listaMonticulo[1:][1]:
-            if i == vertice:
-                a= True
+            if i == vertice: #compara el vértice con el segundo elemento de la tupla
+                a= True # devuelve True si el vértice está presente
             else:
-                a= False
-        return a
-        #return any (item == vertice for item in self.listaMonticulo[1:])
+                a= False # devuelve False si el vértice no está presente
+        return a # devuelve el resultado de la verificación
         
-    def __iter__(self):
-        for i in range (1, len(self.listaMonticulo)):
-            yield self.listaMonticulo[i]
+    def __iter__(self): # permite iterar sobre los elementos del montículo
+        for i in range (1, len(self.listaMonticulo)): # comienza desde 1 para omitir el primer elemento (0)
+            yield self.listaMonticulo[i] # yield devuelve el elemento actual de la lista del montículo
 
-    def __str__(self):
+    def __str__(self): # devuelve una representación en cadena del montículo
         for i in self.listaMonticulo:
             print(i)
 
-    def decrementarClave(self, vertice, nuevaClave):   #el formato en el que se recibe es (clave, vertice)
-        # Busca la posición de la tupla que contiene el vértice
-        for i in range(1, len(self.listaMonticulo)):
-            if self.listaMonticulo[i][1] == vertice:
-                self.listaMonticulo[i] = (nuevaClave, vertice)
-                self.infiltrarArriba(i)
+                        #el formato en el que se recibe es (clave, vertice)
+    def decrementarClave(self, vertice, nuevaClave):    # busca el vértice en el montículo y actualiza su clave
+        for i in range(1, len(self.listaMonticulo)): # busca la posición de la tupla que contiene el vértice
+            if self.listaMonticulo[i][1] == vertice: # compara el vértice con el segundo elemento de la tupla
+                self.listaMonticulo[i] = (nuevaClave, vertice) # Actualiza la clave del vértice
+                self.infiltrarArriba(i) # reordena el montículo
                 return
 
 if __name__ == "__main__":
@@ -80,13 +79,13 @@ if __name__ == "__main__":
     b.insertar((8, 'C'))
     b.insertar((1, 'D'))
     b.insertar((4, 'E'))
-    print("Montículo después de inserciones:", b.listaMonticulo)
-    print("Elemento mínimo eliminado:", b.eliminarMin())
+    print("Montículo después de inserciones:", b.listaMonticulo) # muestra el montículo después de insertar elementos
+    print("Elemento mínimo eliminado:", b.eliminarMin()) 
     print("Montículo después de eliminar el mínimo:", b.listaMonticulo)
-    b.construirMonticulo([(2, 'F'), (6, 'G'), (0, 'H')])
+    b.construirMonticulo([(2, 'F'), (6, 'G'), (0, 'H')]) # construye el montículo a partir de una lista
     print("Montículo después de construir desde una lista:", b.listaMonticulo)
     print("¿Está vacío el montículo?", b.estaVacio())
-    print("¿Contiene el valor (3, 'B')?", b.contiene(('B')))
-    b.decrementarClave ('G', 1)  
+    print("¿Contiene el valor (3, 'B')?", b.contiene(('B'))) # devuelve True si el montículo contiene el vértice 'B'
+    b.decrementarClave ('G', 1)  # decrementar la clave del vértice 'G' a 1
     print("Montículo después de decrementar clave:", b.listaMonticulo)
     

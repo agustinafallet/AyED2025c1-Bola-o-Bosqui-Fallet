@@ -1,6 +1,6 @@
 class MonticuloBinario: #utilizamos el concepto de MB para la construccion de una cola de prioridad
     def __init__(self):
-        self.listaMonticulo = [0]  #inicializamos la lista en 0 oara que el primer elemento sea el 1
+        self.listaMonticulo = [0]  #inicializamos la lista en 0 para que el primer elemento sea el 1
         self.tamanoActual = 0 #inicializamos el tamaño actual del monticulo en 0
 
 
